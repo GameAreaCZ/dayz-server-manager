@@ -2,10 +2,6 @@ name: Build
 
 on:
   push:
-    branches:
-      - master
-      - experimental
-      - map-workaround
     tags:
       - '*'
 
