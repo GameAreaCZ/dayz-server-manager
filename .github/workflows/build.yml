@@ -45,7 +45,7 @@ jobs:
       run: powershell Compress-Archive -Path 'build/*' -DestinationPath 'server-manager.zip'
     
     - name: Archive build artifacts (windows)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: server-manager-windows
         path: ./server-manager.zip
