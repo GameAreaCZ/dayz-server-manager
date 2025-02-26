@@ -1,5 +1,3 @@
-test
-
 # DayZ Server Manager
 
 [![Pricing](https://img.shields.io/badge/Pricing-FREE-green.svg)](https://github.com/mr-guard/dayz-server-manager/)
