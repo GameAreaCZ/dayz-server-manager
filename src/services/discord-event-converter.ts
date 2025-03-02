@@ -50,7 +50,7 @@ export class DiscordEventConverter extends IService {
                 InternalEventTypes.DISCORD_MESSAGE,
                 {
                     type: 'admin',
-                    message: 'Failed to update server!',
+                    message: 'Nepodařilo se aktualizovat server!',
                 },
             );
         } else {
@@ -58,7 +58,7 @@ export class DiscordEventConverter extends IService {
                 InternalEventTypes.DISCORD_MESSAGE,
                 {
                     type: 'notification',
-                    message: 'Successfully updated server!',
+                    message: 'Server byl úspěšně aktualizován!',
                 },
             );
         }
@@ -73,7 +73,7 @@ export class DiscordEventConverter extends IService {
                 InternalEventTypes.DISCORD_MESSAGE,
                 {
                     type: 'admin',
-                    message: `Failed to update mods: ${status.modIds.join('\n')}`,
+                    message: `Nepodařilo se aktualizovat módy: ${status.modIds.join('\n')}`,
                 },
             );
             return;
@@ -94,7 +94,7 @@ export class DiscordEventConverter extends IService {
                         if (typeof modInfo !== 'string' && modInfo?.title) {
                             if (modInfo.time_updated || modInfo.time_created) {
                                 fields.push({
-                                    name: 'Uploaded at',
+                                    name: 'Nahráno dne',
                                     value: (new Date((modInfo.time_updated || modInfo.time_created) * 1000))
                                         .toISOString()
                                         .split(/[T\.]/)
@@ -106,23 +106,23 @@ export class DiscordEventConverter extends IService {
                             }
                             const embed = new MessageEmbed({
                                 color: 0x0099FF,
-                                title: `Successfully updated: ${modInfo.title}`,
+                                title: `Mód byl úspěšně aktualizován: ${modInfo.title}`,
                                 url: `https://steamcommunity.com/sharedfiles/filedetails/?id=${modInfo.publishedfileid}`,
                                 fields,
                                 thumbnail: { url: modInfo.preview_url || undefined },
                                 image: { url: modInfo.preview_url || undefined },
                                 footer: {
-                                    text: 'Powered by DayZ Server Manager',
+                                    text: 'GameArea.cz DayZ Server',
                                 },
                             });
                             return embed;
                         } else if (typeof modInfo === 'string') {
                             return new MessageEmbed({
                                 color: 0x0099FF,
-                                title: `Successfully updated: ${modInfo}`,
+                                title: `Mód byl úspěšně aktualizován: ${modInfo}`,
                                 url: `https://steamcommunity.com/sharedfiles/filedetails/?id=${modInfo}`,
                                 footer: {
-                                    text: 'Powered by DayZ Server Manager',
+                                    text: 'GameArea.cz DayZ Server',
                                 },
                             });
                         }
@@ -141,7 +141,7 @@ export class DiscordEventConverter extends IService {
                 previousState === ServerState.STARTING
             )
         ) {
-            const message = 'Server started sucessfully';
+            const message = 'Server byl úspěšně spuštěn';
             this.log.log(LogLevel.IMPORTANT, message);
             this.eventBus.emit(
                 InternalEventTypes.DISCORD_MESSAGE,
@@ -159,7 +159,7 @@ export class DiscordEventConverter extends IService {
                 previousState === ServerState.STOPPING
             )
         ) {
-            const message = 'Server stopped sucessfully';
+            const message = 'Server byl úspěšně zastaven';
             this.log.log(LogLevel.IMPORTANT, message);
             this.eventBus.emit(
                 InternalEventTypes.DISCORD_MESSAGE,
@@ -178,7 +178,7 @@ export class DiscordEventConverter extends IService {
                 || previousState === ServerState.STARTED
             )
         ) {
-            const message = 'Detected possible server crash. Restarting...';
+            const message = 'Detekuji možný pád serveru. Restartovávám...';
             this.log.log(LogLevel.WARN, message);
             this.eventBus.emit(
                 InternalEventTypes.DISCORD_MESSAGE,

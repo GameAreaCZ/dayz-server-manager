@@ -103,7 +103,7 @@ export class Events extends IStatefulService {
                         InternalEventTypes.DISCORD_MESSAGE,
                         {
                             type: 'notification',
-                            message: 'Executing planned Restart!',
+                            message: 'Zahajuji plánovaný restart serveru!',
                         },
                     );
                     await this.monitor.killServer();
